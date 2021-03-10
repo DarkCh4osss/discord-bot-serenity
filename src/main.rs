@@ -31,7 +31,7 @@ impl EventHandler for Handler {
 }
 
 #[group]
-#[commands(ping, kick, ban, unban)]
+#[commands(ping, help, kick, ban, unban)]
 struct General;
 
 #[tokio::main]

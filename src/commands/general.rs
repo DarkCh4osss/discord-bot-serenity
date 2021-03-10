@@ -13,3 +13,27 @@ pub async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 
     Ok(())
 }
+
+#[command]
+pub async fn help(ctx: &Context, msg: &Message) -> CommandResult {
+    let sos = msg.channel_id.send_message(&ctx, |m| {
+        m.embed(|e| e
+            .title("Comandi | TS-Bot")
+            .field("Generale", "`drk!help`\n`drk!ping`", false)
+            .field("Moderazione", "`drk!ban <utente> <motivo>`\n`drk!kick <utente> <motivo>`\n`drk!unban <id>`", false)
+            .color(0xff0000)
+            .timestamp("")
+            .footer(|f| f
+                .text("Comandi | TS-Bot")
+            )
+        );
+
+        m
+    }).await;
+
+    if let Err(why) = sos {
+        println!("Errore durante l'invio dell'embed: {:?}", why);
+    }
+
+    Ok(())
+}
